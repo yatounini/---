@@ -1,0 +1,62 @@
+import java.util.ArrayList;
+
+/**
+ * 用原型实例创建对象的种类，并通过原型创建一个新的实例，该类实现了Cloneable接口
+ * Android中的原型设计模式有：Bundle、Intent、OkHttpClient
+ * 其实有时候我们会更多的看到原型模式的另一种写法。
+ * 在clone函数里调用构造函数，构造函数的入参是该类对象。
+ */
+public class PersonSource implements Cloneable {
+
+    private String name;
+    private int age;
+    private double height;
+    private double weight;
+    private ArrayList<String> hobbies = new ArrayList<String>();
+
+    public PersonSource() {
+    }
+
+    private PersonSource(PersonSource persionSource) {
+        this.name = persionSource.name;
+        this.age = persionSource.age;
+        this.height = persionSource.height;
+        this.weight = persionSource.weight;
+        this.hobbies = (ArrayList<String>) persionSource.hobbies.clone();
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
+    public void setHobbies(ArrayList<String> hobbies) {
+        this.hobbies = hobbies;
+    }
+
+    public ArrayList<String> getHobbies() {
+        return hobbies;
+    }
+
+    @Override
+    protected Object clone() {
+        return new PersonSource(this);
+    }
+
+    @Override
+    public String toString() {
+        return PersonSource.class.getName() + " name = " + name + " age = " + age + " height = " + height
+                + " weight = " + weight + " hobbies = " + hobbies.toString();
+    }
+}
