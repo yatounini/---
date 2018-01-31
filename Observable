@@ -1,0 +1,30 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Observer;
+
+public class Observable {
+
+    private List<IObserver> observers = new ArrayList<IObserver>();
+
+    public void register(IObserver observer) {
+        if (observer == null) {
+            throw new NullPointerException("observer == null");
+        }
+
+        synchronized (this) {
+            if (!observers.contains(observer)) {
+                observers.add(observer);
+            }
+        }
+    }
+
+    public synchronized void unRegister(Observer observer) {
+        observers.remove(observer);
+    }
+
+    public void notifyObservers(Object data) {
+        for (IObserver observer: observers) {
+            observer.update(this, data);
+        }
+    }
+}
