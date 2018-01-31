@@ -4,14 +4,14 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Hello World!");
 
-        SimpleObservable so = new SimpleObservable();
-        SimpleObserver view = new SimpleObserver(so);
-        so.setData(1);
-        so.setData(2);
-        so.setData(3);
-        Person.Builder builder = new Person.Builder();
-        Person person = builder.name("张三").age(19).height(188).weight(160).builder();
-        System.out.println("Hello " + person.toString());
+//        SimpleObservable so = new SimpleObservable();
+//        SimpleObserver view = new SimpleObserver(so);
+//        so.setData(1);
+//        so.setData(2);
+//        so.setData(3);
+//        Person.Builder builder = new Person.Builder();
+//        Person person = builder.name("张三").age(19).height(188).weight(160).builder();
+//        System.out.println("Hello " + person.toString());
 
         Observable observable = new Observable();
 
