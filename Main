@@ -1,0 +1,48 @@
+
+public class Main {
+
+    public static void main(String[] args) {
+        System.out.println("Hello World!");
+
+        SimpleObservable so = new SimpleObservable();
+        SimpleObserver view = new SimpleObserver(so);
+        so.setData(1);
+        so.setData(2);
+        so.setData(3);
+        Person.Builder builder = new Person.Builder();
+        Person person = builder.name("张三").age(19).height(188).weight(160).builder();
+        System.out.println("Hello " + person.toString());
+
+        Observable observable = new Observable();
+
+        IObserver<Weather> observer = new IObserver<Weather>() {
+            @Override
+            public void update(Observable observable, Weather data) {
+                System.out.println("观察者111："+data.toString());
+            }
+        };
+
+        IObserver<Weather> observer1 = new IObserver<Weather>() {
+            @Override
+            public void update(Observable observable, Weather data) {
+                System.out.println("观察者222："+data.toString());
+            }
+        };
+
+        observable.register(observer);
+        observable.register(observer1);
+
+        Weather weather1 = new Weather();
+        weather1.setDescription("今天天气晴朗万里无云");
+        observable.notifyObservers(weather1);
+
+        Weather weather2 = new Weather();
+        weather2.setDescription("今天天气多云阴冷有大风");
+        observable.notifyObservers(weather2);
+
+        Weather weather3 = new Weather();
+        weather3.setDescription("今天大雪，多希望北京能有场大雪啊");
+        observable.notifyObservers(weather3);
+    }
+
+}
