@@ -1,14 +1,12 @@
 /**
  * 策略模式定义了一些列的算法，并将每一个算法封装起来，而且使它们还可以相互替换。策略模式让算法独立于使用它的客户而独立变换
  * 旅游出行的方式有很多，有步行，有坐火车，有坐飞机等，如果不用设计模式，那么就是if... else if ... else if... else
- * */
-
-TravelContext travelContext=new TravelContext();
-travelContext.setStrategy(new PlaneStrategy());
-travelContext.travel();
-
-travelContext.setStrategy(new WalkStrategy());
-travelContext.travel();
+ *
+ * 应用了策略模式后，如果我们想增加新的出行方式，完全不必要修改现有的类，我们只需要实现策略接口即可，这就是面向对象中的对扩展开放准则。
+ * 假设现在我们增加了一种自行车出行的方式，只需新增一个类即可
+ *
+ * 在Android的系统源码中,策略模式也是应用的相当广泛的.最典型的就是属性动画中的应用.
+ */
 
 public class TravelContext {
 
@@ -29,6 +27,7 @@ public class TravelContext {
         }
     }
 }
+
 
 public interface Travel {
      void travel();
